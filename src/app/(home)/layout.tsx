@@ -22,6 +22,7 @@ export default async function RootLayout({
   const cards = board.cards
     .filter((card) => !card.closed)
     .filter((card) => card.due)
+    .filter((card) => new Date(card.due).getTime() >= new Date().setHours(0, 0, 0, 0))
     .sort((a, b) => new Date(a.due).getTime() - new Date(b.due).getTime());
 
   return (
